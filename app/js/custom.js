@@ -94,11 +94,32 @@ function to100slow() {
     });
 
 };
+
+function to100slow() {
+
+    circle.animate(1.0, {
+        duration: 6000,
+        easeing: 'easeOutExpo',
+        step: updatePercentage
+    });
+
+};
+
 function to100fast() {
 
     circle.animate(1.0, {
         duration: 500,
         easing: 'easeOutExpo',
+        step: updatePercentage
+    });
+
+};
+
+
+function to99full() {
+
+    circle.animate(0.99, {
+        duration: 10000,
         step: updatePercentage
     });
 
@@ -114,6 +135,11 @@ $( document ).on( 'click', '.js-animate-start', function( e ) {
 
 $( document ).on( 'click', '.js-animate-end', function( e ) {
     to100fast();
+    e.preventDefault();
+});
+
+$( document ).on( 'click', '.js-animate-start-full', function( e ) {
+    to99full();
     e.preventDefault();
 });
 
