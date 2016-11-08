@@ -63,43 +63,55 @@ var circle = new ProgressBar.Circle('#progress', {
         alignToBottom: true
     }
 });
+
+function numToPercentage(r) {
+    return  Math.round(r * 100) + '%';
+};
+
 var updatePercentage = function(){
     circle.setText( numToPercentage( circle.value() ) );
 }
 
-function numToPercentage(r) {
-    return Math.round(r * 100) + '%';
-};
 
-
-$( document ).on( 'click', '.js-animate-1', function( e ) {
+function to80() {
 
     circle.animate(0.8, {
         duration: 7000,
         step: updatePercentage
     });
 
-    e.preventDefault();
-});
+};
 
-
-$( document ).on( 'click', '.js-animate-2', function( e ) {
+function to100() {
 
     circle.animate(1.0, {
         duration: 10000,
         step: updatePercentage
     });
 
-    e.preventDefault();
-});
-
-
-$( document ).on( 'click', '.js-animate-3', function( e ) {
+};
+function to100fast() {
 
     circle.animate(1.0, {
         duration: 250,
         step: updatePercentage
     });
 
+};
+
+
+
+$( document ).on( 'click', '.js-animate-1', function( e ) {
+    to80();
+    e.preventDefault();
+});
+
+$( document ).on( 'click', '.js-animate-2', function( e ) {
+    to100();
+    e.preventDefault();
+});
+
+$( document ).on( 'click', '.js-animate-3', function( e ) {
+    to100fast();
     e.preventDefault();
 });
