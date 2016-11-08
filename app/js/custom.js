@@ -73,19 +73,23 @@ var updatePercentage = function(){
 }
 
 
-function to80() {
+function to90() {
 
-    circle.animate(0.8, {
-        duration: 7000,
-        step: updatePercentage
-    });
+    circle.animate(
+        0.9, {
+            duration: 7000,
+            step: updatePercentage
+        }, function() {
+            to100slow();
+        });
 
 };
 
-function to100() {
+function to100slow() {
 
     circle.animate(1.0, {
-        duration: 10000,
+        duration: 6000,
+        easeing: 'easeOutExpo',
         step: updatePercentage
     });
 
@@ -93,7 +97,8 @@ function to100() {
 function to100fast() {
 
     circle.animate(1.0, {
-        duration: 250,
+        duration: 500,
+        easing: 'easeOutExpo',
         step: updatePercentage
     });
 
@@ -101,17 +106,20 @@ function to100fast() {
 
 
 
-$( document ).on( 'click', '.js-animate-1', function( e ) {
-    to80();
+
+$( document ).on( 'click', '.js-animate-start', function( e ) {
+    to90();
     e.preventDefault();
 });
 
-$( document ).on( 'click', '.js-animate-2', function( e ) {
-    to100();
-    e.preventDefault();
-});
-
-$( document ).on( 'click', '.js-animate-3', function( e ) {
+$( document ).on( 'click', '.js-animate-end', function( e ) {
     to100fast();
+    e.preventDefault();
+});
+
+$( document ).on( 'click', '.js-reset', function( e ) {
+    circle.set(0.0);
+    circle.setText('0%');
+
     e.preventDefault();
 });
