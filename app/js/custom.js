@@ -1,4 +1,4 @@
-$(document).ready(function(){
+// $(document).ready(function(){
 
 // With the element initially hidden, we can show it slowly:
 function overlayFadeIn() {
@@ -41,65 +41,65 @@ function simpleBarTo99() {
 
 console.log( 'hello in running');
 
-var findProgressTxt = $(".loadingModal--processtext");
 
-var progressUpdates = [
-  "Checking your login details…",
-  "Loading your account information…",
-  "Fetching investment valuations…"
-];
 
-var progressUpdatesLen = progressUpdates.length - 1;
 
-var intervalMs = 1000;
 
-function textIncrementer() {
 
-  console.log( 'inside textIncrementer');
 
-  for(var i = 0; i < progressUpdatesLen; i++) {
 
-    if ( i != progressUpdatesLen ) {
 
-      setTimeout( function(){
-        console.log( 'inside loop: ', i);
-          findProgressTxt.html( progressUpdates[i] );
-      }, intervalMs);
+// function changeText() {
+//     var count = 0;
+//     function frame() {
+//       findProgressTxt.text(progressUpdates[count]);
+//       count < 3 ? count++ : count = 0;
+//       if (count == 3) {
+//         clearInterval( txtinterval );
+//
+//       }
+//     };
+//     var txtinterval = setInterval(changeText, 500);
+// }
 
-    } // close if statement
+function changeText(l) {
+  var animateTxt = 0;
+  var progressUpdates = [
+    "Checking your login details…",
+    "Loading your account information…",
+    "Fetching investment valuations…"
+  ];
+  var progressUpdatesLen = progressUpdates.length;
+  var findProgressTxt = document.getElementById("progressTxt-id");
+  console.log("inside function");
 
-  } // close for loop
+  function frame() {
+    animateTxt++
+    console.log("inside frame");
+    console.log(findProgressTxt);
+    console.log(animateTxt);
+    console.log(progressUpdatesLen+1);
+    findProgressTxt.innerHTML = progressUpdates[animateTxt-1];
 
+    if (animateTxt == progressUpdatesLen) {
+      clearInterval(id);
+
+    }
+  };
+  var id = setInterval(frame, l/progressUpdatesLen );
 };
 
 
-// function swaptxt( animationLength ) {
-//   var animateProgressTxt = 0;
-//   var findProgressTxt = $(".loadingModal--processtext");
-//   var amountOfUpdates = progressUpdates.length - 1;
-//   var swapInterval = ( animationLength / (amountOfUpdates + 1) );
-//
-//   function frame() {
-//   animateProgressTxt++
-//     findProgressTxt.innerHTML = progressUpdates[animateProgressTxt];
-//
-//     // console.log(animateProgressTxt + (progressUpdates[animateProgressTxt-1]));
-//     // console.log(swapInterval);
-//     if (animateProgressTxt == (amountOfUpdates)) {
-//       clearInterval(id);
-//       // console.log("done progresstxt");
-//       //   console.log(animateProgressTxt + (progressUpdates[animateProgressTxt]));
-//     };
-//   };
-//   var id = setInterval(frame, swapInterval);
-// };
+
+
 
 
 function jswidth(animationLength) {
   var animateWidth = 0;
   var findBar =  document.getElementById("bar-id");
   var findBarLable = document.getElementById("bar-lable-id");
-  swaptxt(animationLength);
+  // swaptxt(animationLength);
+  // textIncrementer();
   function frame() {
     animateWidth++
     findBarLable.innerHTML = animateWidth + '%';
@@ -112,26 +112,7 @@ function jswidth(animationLength) {
   var id = setInterval(frame, (animationLength/99) );
 };
 
-// function simpleBarTo99() {
-//    setInterval(animateBar(), 1000);
-// };
 
-// var tweenable = new Tweenable();
-//
-// function simpleBarTo99() {
-//   tweenable.tween({
-//     from:     { 'x': 0  },
-//     to:       { 'x': 100 },
-//     duration: 8000,
-//     step: function (state) {
-//       widthBar.HTMLelement.style(width="x"+'%');
-//     },
-//     finish: function (state) {
-//       console.log("width done " + "x")
-//     }
-//   });
-//
-// };
 
 
 var circle = new ProgressBar.Circle('.js-loadingModal--circle', {
@@ -254,15 +235,11 @@ function bgBefore() {
 $( document ).on( 'click', '.js-animate-bar-width', function( e ) {
     // simpleBarTo99()
     jswidth(8000);
+    changeText(6000)
     e.preventDefault();
 });
 $( document ).on( 'click', '.js-animate-overlay-in', function( e ) {
     overlayFadeIn();
-
-    setTimeout( function(){
-      textIncrementer();
-    }, 2000);
-
     e.preventDefault();
 });
 
@@ -273,6 +250,7 @@ $( document ).on( 'click', '.js-animate-overlay-out', function( e ) {
 
 $( document ).on( 'click', '.js-animate-start', function( e ) {
     to90();
+    changeText(6000)
     e.preventDefault();
 });
 
@@ -294,4 +272,4 @@ $( document ).on( 'click', '.js-reset', function( e ) {
     e.preventDefault();
 });
 
-}); // close doc ready
+// }); // close doc ready

@@ -29,7 +29,7 @@ html, body {
   width: 100%;
   height: 100%;
   z-index: 10;
-  background-color: rgba(255, 255, 255, 0.95);
+  background-color: white;
   /*whiteout the background*/ }
 
 .loadingModal {
@@ -92,9 +92,9 @@ html, body {
 .progressBar--container {
   width: 100%;
   height: 24px;
-  border: 1px solid; }
+  border: 1px solid #666666; }
 
 .progressBar--bar {
-  background-color: red;
+  background-color: #006193;
   width: 0%;
   height: 100%; }
