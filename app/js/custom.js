@@ -43,8 +43,12 @@ console.log( 'hello in running');
 
 
 
-
-
+// http://jsfiddle.net/Ty4gt/
+// var count = 0;
+// setInterval(function(){
+//   count++;
+//   document.getElementById('loadingtext').innerHTML = "Loading" + new Array(count % 5).join('.');
+// }, 300);
 
 
 
@@ -186,15 +190,7 @@ function to99slow() {
 
 };
 
-function to99slow() {
 
-    circle.animate(0.99, {
-        duration: 6000,
-        easeing: 'easeOutExpo',
-        step: updatePercentage
-    });
-
-};
 
 function to100fast() {
 
