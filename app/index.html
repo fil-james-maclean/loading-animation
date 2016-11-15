@@ -26,15 +26,25 @@
 <div class="overlay  js-overlay">
 
 	<div class="loadingModal">
-		<span class="loadingModal--processtext">Checking your login details…</span>
-		<div class="loadingModal--circle  js-loadingModal--circle">
-	</div>
+		<span id="progressTxt-id" class="loadingModal--processtext">Checking your login details…</span>
+		<div class="loadingModal--circle  js-loadingModal--circle" style="
+    display: none;"></div>
 
+		<div class="progressBar">
+
+			<span id="bar-lable-id" class="progressBar--lable">0%</span>
+
+			<div class="progressBar--container">
+				<div id="bar-id" class="progressBar--bar  js-widthBar"></div>
+			</div>
+
+		</div>
 
 	</div>
 </div>
 
 <div class="demoBtns">
+	<a href="" class="js-animate-bar-width">barWidth</a>
 	<a href="" class="js-animate-overlay-in">fadeIn</a>
 	<a href="" class="js-animate-overlay-out">fadeOut</a>
 	<a href="" class="js-reset">reset</a>

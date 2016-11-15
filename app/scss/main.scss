@@ -30,7 +30,7 @@ html, body {
   width: 100%;
   height: 100%;
   z-index: 10;
-  background-color: rgba(255,255,255,1.0); /*whiteout the background*/
+  background-color: rgba(255,255,255,0.95); /*whiteout the background*/
 
 }
 .loadingModal {
@@ -90,4 +90,20 @@ html, body {
     cursor: pointer;
 
   }
+}
+.progressBar--lable {
+  text-align: center;
+  width: 100%;
+  display: block;
+}
+.progressBar--container {
+  width: 100%;
+  height: 24px;
+  border: 1px solid;
+}
+
+.progressBar--bar{
+  background-color: red;
+  width: 0%;
+  height:100%;
 }

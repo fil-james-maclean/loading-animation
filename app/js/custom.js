@@ -1,14 +1,137 @@
+$(document).ready(function(){
+
 // With the element initially hidden, we can show it slowly:
 function overlayFadeIn() {
   $( '.js-overlay' ).fadeIn( "slow" );
-  $('html').addClass('no-scroll');
+  $( 'html' ).addClass( 'no-scroll' );
 };
 
 function overlayFadeOut() {
   $( '.js-overlay' ).fadeOut( "slow" );
-  $('html').removeClass('no-scroll');
+  $( 'html' ).removeClass( 'no-scroll' );
 };
 
+
+// function animateBar() {
+//    var i = 0;
+//    if i =< 99 {
+//       var widthPercent = i + '%';
+//       $( '.js-widthBar' ).css("width", widthPercent);
+//       console.log(i);
+//       var
+//    }
+//    for (i = 0; i < 100; i++) {
+//
+//
+//         $( '.js-widthBar' ).css("width", widthPercent);
+//         console.log(i);
+//
+//    };
+//
+// };
+
+function simpleBarTo99() {
+  $( '.js-widthBar' ).show().animate({
+    width: "100%"
+  }, 5000, function() {
+    // Animation complete.
+    // overlayFadeOut()
+  });
+};
+
+console.log( 'hello in running');
+
+var findProgressTxt = $(".loadingModal--processtext");
+
+var progressUpdates = [
+  "Checking your login details…",
+  "Loading your account information…",
+  "Fetching investment valuations…"
+];
+
+var progressUpdatesLen = progressUpdates.length - 1;
+
+var intervalMs = 1000;
+
+function textIncrementer() {
+
+  console.log( 'inside textIncrementer');
+
+  for(var i = 0; i < progressUpdatesLen; i++) {
+
+    if ( i != progressUpdatesLen ) {
+
+      setTimeout( function(){
+        console.log( 'inside loop: ', i);
+          findProgressTxt.html( progressUpdates[i] );
+      }, intervalMs);
+
+    } // close if statement
+
+  } // close for loop
+
+};
+
+
+// function swaptxt( animationLength ) {
+//   var animateProgressTxt = 0;
+//   var findProgressTxt = $(".loadingModal--processtext");
+//   var amountOfUpdates = progressUpdates.length - 1;
+//   var swapInterval = ( animationLength / (amountOfUpdates + 1) );
+//
+//   function frame() {
+//   animateProgressTxt++
+//     findProgressTxt.innerHTML = progressUpdates[animateProgressTxt];
+//
+//     // console.log(animateProgressTxt + (progressUpdates[animateProgressTxt-1]));
+//     // console.log(swapInterval);
+//     if (animateProgressTxt == (amountOfUpdates)) {
+//       clearInterval(id);
+//       // console.log("done progresstxt");
+//       //   console.log(animateProgressTxt + (progressUpdates[animateProgressTxt]));
+//     };
+//   };
+//   var id = setInterval(frame, swapInterval);
+// };
+
+
+function jswidth(animationLength) {
+  var animateWidth = 0;
+  var findBar =  document.getElementById("bar-id");
+  var findBarLable = document.getElementById("bar-lable-id");
+  swaptxt(animationLength);
+  function frame() {
+    animateWidth++
+    findBarLable.innerHTML = animateWidth + '%';
+    findBar.style.width = animateWidth + '%';
+    if (animateWidth == 100) {
+      clearInterval(id);
+      overlayFadeOut();
+    }
+  };
+  var id = setInterval(frame, (animationLength/99) );
+};
+
+// function simpleBarTo99() {
+//    setInterval(animateBar(), 1000);
+// };
+
+// var tweenable = new Tweenable();
+//
+// function simpleBarTo99() {
+//   tweenable.tween({
+//     from:     { 'x': 0  },
+//     to:       { 'x': 100 },
+//     duration: 8000,
+//     step: function (state) {
+//       widthBar.HTMLelement.style(width="x"+'%');
+//     },
+//     finish: function (state) {
+//       console.log("width done " + "x")
+//     }
+//   });
+//
+// };
 
 
 var circle = new ProgressBar.Circle('.js-loadingModal--circle', {
@@ -116,10 +239,7 @@ function to97full() {
 
 };
 
-var progressUpdates = [
-  "Checking your login details…",
-  "Loading your account information…",
-  "Fetching  investment valuations…"];
+
 
 function bgAfter() {
   $('.wrap').addClass('bg-after-img');
@@ -131,9 +251,18 @@ function bgBefore() {
   $('.wrap').removeClass('bg-after-img');
 };
 
-
+$( document ).on( 'click', '.js-animate-bar-width', function( e ) {
+    // simpleBarTo99()
+    jswidth(8000);
+    e.preventDefault();
+});
 $( document ).on( 'click', '.js-animate-overlay-in', function( e ) {
     overlayFadeIn();
+
+    setTimeout( function(){
+      textIncrementer();
+    }, 2000);
+
     e.preventDefault();
 });
 
@@ -161,5 +290,8 @@ $( document ).on( 'click', '.js-reset', function( e ) {
     circle.set(0.0);
     circle.setText('0%');
     bgBefore();
+    $( '.js-widthBar' ).width("10%");
     e.preventDefault();
 });
+
+}); // close doc ready
