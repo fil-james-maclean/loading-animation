@@ -8,13 +8,23 @@ function overlayFadeIn() {
     $( 'html' ).addClass( 'no-scroll' );
 };
 
+// function overlayFadeOut() {
+//     $( '.js-overlay' ).fadeOut( "slow", function() {
+//         $( '.bg-after-img' ).fadeIn( "slow", function() {
+//             $( '.bg-loginform-img' ).addClass( 'bg-is-left' );
+//             $( '.bg-summary-img' ).removeClass( 'bg-is-right' );
+//         }  );
+//     } );
+//     $( 'html' ).removeClass( 'no-scroll' );
+//     dotsIsAnimating = false;
+// };
 function overlayFadeOut() {
-    $( '.js-overlay' ).fadeOut( "slow", function() {
-        $( '.bg-after-img' ).fadeIn( "slow", function() {
-            $( '.bg-loginform-img' ).addClass( 'bg-is-left' );
-            $( '.bg-summary-img' ).removeClass( 'bg-is-right' );
-        }  );
-    } );
+    $( '.js-overlay' ).fadeOut( "slow" );
+    $( '.bg-after-img' ).fadeIn( "slow" );
+    $( '.bg-loginform-img' ).addClass( 'bg-is-left' );
+    $( '.bg-summary-img' ).removeClass( 'bg-is-right' );
+
+
     $( 'html' ).removeClass( 'no-scroll' );
     dotsIsAnimating = false;
 };
