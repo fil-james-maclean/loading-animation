@@ -19,15 +19,21 @@
 
 <html>
 <body>
-<div class="wrap bg-before-img">
-
+<div class="wrap">
+    <div class="bg-img bg-before-img"></div>
+    <div class="bg-img bg-after-img"></div>
+    <div class="bg-img bg-loginform-img"></div>
+    <div class="bg-img bg-summary-img bg-is-right"></div>
 </div>
-
-<div class="overlay  js-overlay">
+<div class="overlay  js-overlay" style="display:block;">
 
 	<div class="loadingModal">
-		<span id="progressTxt-id" class="loadingModal--processtext">Loading…</span>
-		<div class="loadingModal--circle  js-loadingModal--circle" style="display:none;"></div>
+    <div class="progresstext">
+        <span id="progressTxt-id" class="progresstext--string">Loading</span>
+        <span class="progresstext--dots"></span>
+    </div>
+
+	<div class="loadingModal--circle  js-loadingModal--circle" style="display:none;"></div>
 
 		<div class="progressBar">
 
@@ -43,14 +49,9 @@
 </div>
 
 <div class="demoBtns">
-
-	<a href="" class="js-animate-overlay-in">fadeIn</a>
-	<a href="" class="js-animate-overlay-out">fadeOut</a>
-	<a href="" class="js-reset">reset</a>
-		<a href="" class="js-animate-bar-width">barWidth</a>
-	<!-- <a href="" class="js-animate-start">0-90-slow99</a>
-	<a href="" class="js-animate-start-full">Linear to 97</a> -->
-	<a href="" class="js-animate-end">PageReady</a>
+	<a href="" class="js-animate-bar-width">barWidth</a>
+	<!-- <a href="" class="js-animate-overlay-in">START</a>
+	<a href="" class="js-animate-end">PageReady</a> -->
 
 </div>
 

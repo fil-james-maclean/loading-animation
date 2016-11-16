@@ -1,14 +1,33 @@
 // With the element initially hidden, we can show it slowly:
 function overlayFadeIn() {
-    $( '.js-overlay' ).fadeIn( "slow" );
+    $( '.js-overlay' ).fadeIn( "slow", function() {
+        to90();
+        animateDots();
+        changeText(6000);
+    } );
     $( 'html' ).addClass( 'no-scroll' );
 };
 
 function overlayFadeOut() {
-    $( '.js-overlay' ).fadeOut( "slow" );
+    $( '.js-overlay' ).fadeOut( "slow", function() {
+        $( '.bg-after-img' ).fadeIn( "slow", function() {
+            $( '.bg-loginform-img' ).addClass( 'bg-is-left' );
+            $( '.bg-summary-img' ).removeClass( 'bg-is-right' );
+        }  );
+    } );
     $( 'html' ).removeClass( 'no-scroll' );
+    dotsIsAnimating = false;
 };
 
+// function overlayFadeOut() {
+//     $( '.js-overlay' ).fadeOut( "fast" );
+//     $( '.bg-after-img' ).fadeIn( "slow", function() {
+//         $( '.bg-loginform-img' ).addClass( 'bg-is-left' );
+//         $( '.bg-summary' ).removeClass( 'bg-is-right' );
+//     }  );
+//
+//     $( 'html' ).removeClass( 'no-scroll' );
+// };
 
 function simpleBarTo99() {
     $( '.js-widthBar' ).show().animate({
@@ -56,8 +75,6 @@ function changeText(l) {
     var progressUpdatesLen = progressUpdates.length;
     var findProgressTxt = $(".progresstext--string");
 
-    animateDots();
-
     function frame() {
         animateTxt++
 
@@ -96,9 +113,12 @@ function jswidth(animationLength) {
 
 
 
+
 var circle = new ProgressBar.Circle('.js-loadingModal--circle', {
     color: '#006193',
+    // blue1
     trailColor: '#d9d9d9',
+    // grey15
     strokeWidth: 6,
     duration: 2500,
     easing: 'linear',
@@ -176,10 +196,9 @@ function to100fast() {
         easing: 'easeOutExpo',
         step: updatePercentage
     }, function() {
-        bgAfter();
+
         window.scrollTo(0, 0);
         overlayFadeOut();
-        dotsIsAnimating = false;
     });
 
 };
@@ -209,7 +228,8 @@ function bgBefore() {
 $( document ).on( 'click', '.js-animate-bar-width', function( e ) {
     // simpleBarTo99()
     jswidth(8000);
-    changeText(6000)
+    animateDots();
+    changeText(6000);
     e.preventDefault();
 });
 $( document ).on( 'click', '.js-animate-overlay-in', function( e ) {
@@ -245,5 +265,11 @@ $( document ).on( 'click', '.js-reset', function( e ) {
     $( '.js-widthBar' ).width("0%");
     dotsIsAnimating = false;
     $(".progresstext--string").text("loading");
+    e.preventDefault();
+});
+
+$( document ).on( 'click', '.js-animate-left-right', function( e ) {
+    $( '.bg-loginform-img' ).toggleClass( 'bg-is-left' );
+    $( '.bg-summary-img' ).toggleClass( 'bg-is-right' );
     e.preventDefault();
 });
