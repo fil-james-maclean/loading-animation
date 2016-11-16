@@ -102,7 +102,8 @@ html, body {
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
   width: 100%;
-  max-width: 400px; }
+  max-width: 400px;
+  text-align: center; }
 
 .loadingModal--circle {
   height: 174px;
@@ -112,7 +113,7 @@ html, body {
   height: 100%;
   display: block; }
 
-.loadingModal--label {
+.loadingModal--percentage {
   position: absolute;
   left: 50%;
   top: 50%;
@@ -123,14 +124,18 @@ html, body {
   font-size: 42px;
   color: #262626;
   font-family: "neuzeit_grotesk", Arial, Helvetica, sans-serif; }
+  .loadingModal--percentage:after {
+    content: '%';
+    font-size: 80%; }
 
-.loadingModal--processtext {
-  text-align: center;
+.progresstext {
   margin-bottom: 1.6em;
-  display: block;
-  color: #666666;
   font-size: 18px;
-  font-family: "neuzeit_grotesk", Arial, Helvetica, sans-serif; }
+  font-family: "neuzeit_grotesk", Arial, Helvetica, sans-serif;
+  color: #666666; }
+
+.progresstext--dots {
+  position: absolute; }
 
 .progressBar--lable {
   text-align: center;

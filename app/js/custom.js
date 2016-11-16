@@ -1,26 +1,22 @@
-// $(document).ready(function(){
-
 // With the element initially hidden, we can show it slowly:
 function overlayFadeIn() {
-  $( '.js-overlay' ).fadeIn( "slow" );
-  $( 'html' ).addClass( 'no-scroll' );
+    $( '.js-overlay' ).fadeIn( "slow" );
+    $( 'html' ).addClass( 'no-scroll' );
 };
 
 function overlayFadeOut() {
-  $( '.js-overlay' ).fadeOut( "slow" );
-  $( 'html' ).removeClass( 'no-scroll' );
+    $( '.js-overlay' ).fadeOut( "slow" );
+    $( 'html' ).removeClass( 'no-scroll' );
 };
 
 
-
-
 function simpleBarTo99() {
-  $( '.js-widthBar' ).show().animate({
-    width: "100%"
-  }, 5000, function() {
-    // Animation complete.
-    // overlayFadeOut()
-  });
+    $( '.js-widthBar' ).show().animate({
+        width: "100%"
+    }, 5000, function() {
+        // Animation complete.
+        // overlayFadeOut()
+    });
 };
 
 
@@ -28,37 +24,50 @@ function simpleBarTo99() {
 
 
 // http://jsfiddle.net/Ty4gt/
-// var count = 0;
-// setInterval(function(){
-//   count++;
-//   document.getElementById('loadingtext').innerHTML = "Loading" + new Array(count % 5).join('.');
-// }, 300);
+var dotsIsAnimating = true;
+function animateDots() {
+    dotsIsAnimating = true;
+    var dotCount = 0;
 
+    function addDots(){
+        if (dotsIsAnimating==true) {
+            dotCount++;
+            $('.progresstext--dots').text( new Array(dotCount % 5).join('.') );
+            console.log("dot+");
+        }
+        else {
+            clearInterval(dotId);
+            dotCount = 0;
+            console.log("dot STOP");
+        }
+    };
 
-
-
+    var dotId = setInterval(addDots, 400 );
+};
 
 
 function changeText(l) {
-  var animateTxt = 0;
-  var progressUpdates = [
-    "Checking your login details…",
-    "Loading your account information…",
-    "Fetching investment valuations…"
-  ];
-  var progressUpdatesLen = progressUpdates.length;
-  var findProgressTxt = document.getElementById("progressTxt-id");
+    var animateTxt = 0;
+    var progressUpdates = [
+        "Checking your login details",
+        "Loading your account information",
+        "Fetching investment valuations"
+    ];
+    var progressUpdatesLen = progressUpdates.length;
+    var findProgressTxt = $(".progresstext--string");
 
-  function frame() {
-    animateTxt++
-    findProgressTxt.innerHTML = progressUpdates[animateTxt-1];
+    animateDots();
 
-    if (animateTxt == progressUpdatesLen) {
-      clearInterval(id);
+    function frame() {
+        animateTxt++
 
-    }
-  };
-  var id = setInterval(frame, l/progressUpdatesLen );
+        findProgressTxt.text( progressUpdates[animateTxt-1] );
+        if (animateTxt == progressUpdatesLen) {
+            clearInterval(id);
+
+        }
+    };
+    var id = setInterval(frame, l/progressUpdatesLen );
 };
 
 
@@ -67,21 +76,21 @@ function changeText(l) {
 
 
 function jswidth(animationLength) {
-  var animateWidth = 0;
-  var findBar =  document.getElementById("bar-id");
-  var findBarLable = document.getElementById("bar-lable-id");
-  // swaptxt(animationLength);
-  // textIncrementer();
-  function frame() {
-    animateWidth++
-    findBarLable.innerHTML = animateWidth + '%';
-    findBar.style.width = animateWidth + '%';
-    if (animateWidth == 100) {
-      clearInterval(id);
-      overlayFadeOut();
-    }
-  };
-  var id = setInterval(frame, (animationLength/99) );
+    var animateWidth = 0;
+    var findBar =  document.getElementById("bar-id");
+    var findBarLable = document.getElementById("bar-lable-id");
+    // swaptxt(animationLength);
+    // textIncrementer();
+    function frame() {
+        animateWidth++
+        findBarLable.innerHTML = animateWidth + '%';
+        findBar.style.width = animateWidth + '%';
+        if (animateWidth == 100) {
+            clearInterval(id);
+            overlayFadeOut();
+        }
+    };
+    var id = setInterval(frame, (animationLength/99) );
 };
 
 
@@ -96,11 +105,11 @@ var circle = new ProgressBar.Circle('.js-loadingModal--circle', {
     text: {
         // Initial value for text.
         // Default: null
-        value: '0%',
+        value: '0',
 
         // Class name for text element.
         // Default: 'progressbar-text'
-        className: 'loadingModal--label',
+        className: 'loadingModal--percentage',
 
         // Inline CSS styles for the text element.
         // If you want to modify all CSS your self, set null to disable
@@ -128,7 +137,7 @@ var circle = new ProgressBar.Circle('.js-loadingModal--circle', {
 });
 
 function numToPercentage(r) {
-    return  Math.round(r * 100) + '%';
+    return  Math.round(r * 100);
 };
 
 var updatePercentage = function(){
@@ -138,13 +147,13 @@ var updatePercentage = function(){
 
 function to90() {
 
-    circle.animate(
-        0.9, {
-            duration: 7000,
-            step: updatePercentage
-        }, function() {
-            to99slow();
-        });
+circle.animate(
+    0.9, {
+        duration: 7000,
+        step: updatePercentage
+    }, function() {
+        to99slow();
+    });
 
 };
 
@@ -167,9 +176,10 @@ function to100fast() {
         easing: 'easeOutExpo',
         step: updatePercentage
     }, function() {
-      bgAfter();
-      window.scrollTo(0, 0);
-      overlayFadeOut();
+        bgAfter();
+        window.scrollTo(0, 0);
+        overlayFadeOut();
+        dotsIsAnimating = false;
     });
 
 };
@@ -187,13 +197,13 @@ function to97full() {
 
 
 function bgAfter() {
-  $('.wrap').addClass('bg-after-img');
-  $('.wrap').removeClass('bg-before-img');
+    $('.wrap').addClass('bg-after-img');
+    $('.wrap').removeClass('bg-before-img');
 };
 
 function bgBefore() {
-  $('.wrap').addClass('bg-before-img');
-  $('.wrap').removeClass('bg-after-img');
+    $('.wrap').addClass('bg-before-img');
+    $('.wrap').removeClass('bg-after-img');
 };
 
 $( document ).on( 'click', '.js-animate-bar-width', function( e ) {
@@ -230,10 +240,10 @@ $( document ).on( 'click', '.js-animate-start-full', function( e ) {
 
 $( document ).on( 'click', '.js-reset', function( e ) {
     circle.set(0.0);
-    circle.setText('0%');
+    circle.setText('0');
     bgBefore();
-    $( '.js-widthBar' ).width("10%");
+    $( '.js-widthBar' ).width("0%");
+    dotsIsAnimating = false;
+    $(".progresstext--string").text("loading");
     e.preventDefault();
 });
-
-// }); // close doc ready
