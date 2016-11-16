@@ -12,23 +12,7 @@ function overlayFadeOut() {
 };
 
 
-// function animateBar() {
-//    var i = 0;
-//    if i =< 99 {
-//       var widthPercent = i + '%';
-//       $( '.js-widthBar' ).css("width", widthPercent);
-//       console.log(i);
-//       var
-//    }
-//    for (i = 0; i < 100; i++) {
-//
-//
-//         $( '.js-widthBar' ).css("width", widthPercent);
-//         console.log(i);
-//
-//    };
-//
-// };
+
 
 function simpleBarTo99() {
   $( '.js-widthBar' ).show().animate({
@@ -39,7 +23,7 @@ function simpleBarTo99() {
   });
 };
 
-console.log( 'hello in running');
+
 
 
 
@@ -53,18 +37,7 @@ console.log( 'hello in running');
 
 
 
-// function changeText() {
-//     var count = 0;
-//     function frame() {
-//       findProgressTxt.text(progressUpdates[count]);
-//       count < 3 ? count++ : count = 0;
-//       if (count == 3) {
-//         clearInterval( txtinterval );
-//
-//       }
-//     };
-//     var txtinterval = setInterval(changeText, 500);
-// }
+
 
 function changeText(l) {
   var animateTxt = 0;
@@ -75,14 +48,9 @@ function changeText(l) {
   ];
   var progressUpdatesLen = progressUpdates.length;
   var findProgressTxt = document.getElementById("progressTxt-id");
-  console.log("inside function");
 
   function frame() {
     animateTxt++
-    console.log("inside frame");
-    console.log(findProgressTxt);
-    console.log(animateTxt);
-    console.log(progressUpdatesLen+1);
     findProgressTxt.innerHTML = progressUpdates[animateTxt-1];
 
     if (animateTxt == progressUpdatesLen) {

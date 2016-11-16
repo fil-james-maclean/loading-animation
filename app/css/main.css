@@ -1,3 +1,47 @@
+/**
+ * Paths
+ */
+/**
+ * FIL Brand colours
+ * Note: 1 = Darkest of palette
+ */
+/**
+ * The Grey array
+ */
+/**
+ * FIL Funds Network colours
+ */
+/**
+ * FIL Charting Colours
+ * Note: charting colours are named in the order they should be used
+ */
+/**
+ * Helper / Non specific colours
+ */
+/**
+ * Colour arrays
+ */
+@font-face {
+  font-family: 'neuzeit_grotesk';
+  src: url("../assets/fonts/neuzeitgro/light/neuzeitgro-lig.eot");
+  src: url("../assets/fonts/neuzeitgro/light/neuzeitgro-lig.eot?#iefix") format("embedded-opentype"), url("../assets/fonts/neuzeitgro/light/neuzeitgro-lig.woff2") format("woff2"), url("../assets/fonts/neuzeitgro/light/neuzeitgro-lig.woff") format("woff"), url("../assets/fonts/neuzeitgro/light/neuzeitgro-lig.ttf") format("truetype"), url("../assets/fonts/neuzeitgro/light/neuzeitgro-lig.svg#neuzeit_grotesklight") format("svg");
+  font-weight: 300;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'neuzeit_grotesk';
+  src: url("../assets/fonts/neuzeitgro/regular/neuzeitgro-reg.eot");
+  src: url("../assets/fonts/neuzeitgro/regular/neuzeitgro-reg.eot?#iefix") format("embedded-opentype"), url("../assets/fonts/neuzeitgro/regular/neuzeitgro-reg.woff2") format("woff2"), url("../assets/fonts/neuzeitgro/regular/neuzeitgro-reg.woff") format("woff"), url("../assets/fonts/neuzeitgro/regular/neuzeitgro-reg.ttf") format("truetype"), url("../assets/fonts/neuzeitgro/regular/neuzeitgro-reg.svg#neuzeit_groteskregular") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'neuzeit_grotesk';
+  src: url("../assets/fonts/neuzeitgro/bold/neuzeitgro-bol.eot");
+  src: url("../assets/fonts/neuzeitgro/bold/neuzeitgro-bol.eot?#iefix") format("embedded-opentype"), url("../assets/fonts/neuzeitgro/bold/neuzeitgro-bol.woff2") format("woff2"), url("../assets/fonts/neuzeitgro/bold/neuzeitgro-bol.woff") format("woff"), url("../assets/fonts/neuzeitgro/bold/neuzeitgro-bol.ttf") format("truetype"), url("../assets/fonts/neuzeitgro/bold/neuzeitgro-bol.svg#neuzeit_groteskbold") format("svg");
+  font-weight: bold;
+  font-style: normal; }
+
 html {
   box-sizing: border-box; }
 
@@ -6,8 +50,23 @@ html {
 
 html, body {
   margin: 0;
-  padding: 0;
-  font-family: sans-serif; }
+  padding: 0; }
+
+.demoBtns {
+  opacity: 0.6;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  z-index: 30;
+  background: black; }
+  .demoBtns a {
+    display: inline-block;
+    margin: 0.2em;
+    padding: 0.2em 0.6em;
+    background: white;
+    border: 1px solid;
+    cursor: pointer; }
 
 .wrap {
   max-width: 1280px;
@@ -21,6 +80,9 @@ html, body {
 .bg-after-img {
   background-image: url("../assets/0001_account-summary-mask.jpg"); }
 
+/*
+*
+*/
 .overlay {
   display: none;
   position: fixed;
@@ -59,30 +121,16 @@ html, body {
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
   font-size: 42px;
-  color: #262626; }
+  color: #262626;
+  font-family: "neuzeit_grotesk", Arial, Helvetica, sans-serif; }
 
 .loadingModal--processtext {
   text-align: center;
   margin-bottom: 1.6em;
   display: block;
   color: #666666;
-  font-size: 18px; }
-
-.demoBtns {
-  opacity: 0.6;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  text-align: center;
-  z-index: 30;
-  background: black; }
-  .demoBtns a {
-    display: inline-block;
-    margin: 0.2em;
-    padding: 0.2em 0.6em;
-    background: white;
-    border: 1px solid;
-    cursor: pointer; }
+  font-size: 18px;
+  font-family: "neuzeit_grotesk", Arial, Helvetica, sans-serif; }
 
 .progressBar--lable {
   text-align: center;
