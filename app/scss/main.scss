@@ -89,6 +89,8 @@ html, body {
 }
 .loadingModal {
     z-index: 20;
+    // display: none;
+    opacity: 1;
     position: absolute;
     left: 50%;
     top: 50%;
@@ -96,7 +98,14 @@ html, body {
     width:100%;
     max-width: 400px;
     text-align: center;
+    transition:     transform 300ms ease-out,
+                    opacity 200ms ease-out;
+    &.is-right {
+        transform: translate(-30%, -50%);
+        opacity: 0;
+    }
 }
+
 
 
 .loadingModal--circle {

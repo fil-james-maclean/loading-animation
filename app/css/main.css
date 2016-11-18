@@ -121,6 +121,7 @@ html, body {
 
 .loadingModal {
   z-index: 20;
+  opacity: 1;
   position: absolute;
   left: 50%;
   top: 50%;
@@ -128,7 +129,12 @@ html, body {
   transform: translate(-50%, -50%);
   width: 100%;
   max-width: 400px;
-  text-align: center; }
+  text-align: center;
+  transition: transform 300ms ease-out, opacity 200ms ease-out; }
+  .loadingModal.is-right {
+    -ms-transform: translate(-30%, -50%);
+    transform: translate(-30%, -50%);
+    opacity: 0; }
 
 .loadingModal--circle {
   height: 174px;

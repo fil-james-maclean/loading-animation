@@ -1,11 +1,21 @@
 // With the element initially hidden, we can show it slowly:
 function overlayFadeIn() {
-    $( '.js-overlay' ).fadeIn( "slow", function() {
-        to90();
-        animateDots();
-        changeText(6000);
-    } );
-    $( 'html' ).addClass( 'no-scroll' );
+    $( '.bg-loginform-img' ).addClass( 'bg-is-left' );
+    setTimeout( function() {
+
+        $( '.js-overlay' ).fadeIn( "slow", function() {
+
+            $( '.loadingModal').removeClass( 'is-right' );
+            setTimeout(  function() {
+                to90();
+                animateDots();
+                changeText(6000);
+            }, 300 );
+
+        } );
+        $( 'html' ).addClass( 'no-scroll' );
+
+    }, 450 );
 };
 
 // function overlayFadeOut() {
@@ -21,7 +31,7 @@ function overlayFadeIn() {
 function overlayFadeOut() {
     $( '.js-overlay' ).fadeOut( "slow" );
     $( '.bg-after-img' ).fadeIn( "slow" );
-    $( '.bg-loginform-img' ).addClass( 'bg-is-left' );
+
     $( '.bg-summary-img' ).removeClass( 'bg-is-right' );
 
 
