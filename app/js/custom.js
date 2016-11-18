@@ -1,6 +1,6 @@
 // With the element initially hidden, we can show it slowly:
 function overlayFadeIn() {
-    $( '.bg-loginform-img' ).addClass( 'bg-is-left' );
+
     setTimeout( function() {
 
         $( '.js-overlay' ).fadeIn( "slow", function() {
@@ -18,51 +18,30 @@ function overlayFadeIn() {
     }, 450 );
 };
 
-// function overlayFadeOut() {
-//     $( '.js-overlay' ).fadeOut( "slow", function() {
-//         $( '.bg-after-img' ).fadeIn( "slow", function() {
-//             $( '.bg-loginform-img' ).addClass( 'bg-is-left' );
-//             $( '.bg-summary-img' ).removeClass( 'bg-is-right' );
-//         }  );
-//     } );
-//     $( 'html' ).removeClass( 'no-scroll' );
-//     dotsIsAnimating = false;
-// };
+
 function overlayFadeOut() {
+    // Hides the overlay
     $( '.js-overlay' ).fadeOut( "slow" );
+
+    // A simulation of the photograph trasnitioning into the darker version
     $( '.bg-after-img' ).fadeIn( "slow" );
 
+    // A simulation of existing functionality with a more refined animation.
+    $( '.bg-loginform-img' ).addClass( 'bg-is-left' );
     $( '.bg-summary-img' ).removeClass( 'bg-is-right' );
 
-
+    // Class might not be needed
     $( 'html' ).removeClass( 'no-scroll' );
+
+    // This is importaint, it kills a loop that will otherwise just keep going forever.
     dotsIsAnimating = false;
 };
 
-// function overlayFadeOut() {
-//     $( '.js-overlay' ).fadeOut( "fast" );
-//     $( '.bg-after-img' ).fadeIn( "slow", function() {
-//         $( '.bg-loginform-img' ).addClass( 'bg-is-left' );
-//         $( '.bg-summary' ).removeClass( 'bg-is-right' );
-//     }  );
-//
-//     $( 'html' ).removeClass( 'no-scroll' );
-// };
 
-function simpleBarTo99() {
-    $( '.js-widthBar' ).show().animate({
-        width: "100%"
-    }, 5000, function() {
-        // Animation complete.
-        // overlayFadeOut()
-    });
-};
-
-
-
-
-
+// Animates the dots
+// If nothing else happens this will stop the app looking broken
 // http://jsfiddle.net/Ty4gt/
+
 var dotsIsAnimating = true;
 function animateDots() {
     dotsIsAnimating = true;
@@ -72,18 +51,23 @@ function animateDots() {
         if (dotsIsAnimating==true) {
             dotCount++;
             $('.progresstext--dots').text( new Array(dotCount % 5).join('.') );
-            console.log("dot+");
+
+            // importaint to know if this is still going
+            // console.log("dot+");
         }
         else {
             clearInterval(dotId);
             dotCount = 0;
-            console.log("dot STOP");
+
+            // confirms this has stoped
+            // console.log("dot STOP");
         }
     };
 
     var dotId = setInterval(addDots, 400 );
 };
 
+// This is a simulation of the backend changing the text.
 
 function changeText(l) {
     var animateTxt = 0;
@@ -107,17 +91,19 @@ function changeText(l) {
     var id = setInterval(frame, l/progressUpdatesLen );
 };
 
+// In reality the text will change in response to a message from the back end.
+function giveProgressUpdate(message) {
+        $(".progresstext--string").text(message);
+};
 
 
 
 
-
+// a Simple bar width animation with no Jquery
 function jswidth(animationLength) {
     var animateWidth = 0;
     var findBar =  document.getElementById("bar-id");
     var findBarLable = document.getElementById("bar-lable-id");
-    // swaptxt(animationLength);
-    // textIncrementer();
     function frame() {
         animateWidth++
         findBarLable.innerHTML = animateWidth + '%';
@@ -133,12 +119,13 @@ function jswidth(animationLength) {
 
 
 
-
+// Tweenable.setBezierFunction ( easeEnd, 0.770, 0.900, 0.815, 0.995) ;
 var circle = new ProgressBar.Circle('.js-loadingModal--circle', {
+    // filled color is blue1
     color: '#006193',
-    // blue1
+    // unfilled/background color is grey15
     trailColor: '#d9d9d9',
-    // grey15
+    // If greater than 6, will break in IE
     strokeWidth: 6,
     duration: 2500,
     easing: 'linear',
@@ -172,31 +159,29 @@ var circle = new ProgressBar.Circle('.js-loadingModal--circle', {
         // the SVG canvas. If false, bottom line of SVG canvas
         // is in the center of text.
         // Default: true
-        alignToBottom: true
+        alignToBottom: false
     }
 });
 
-function numToPercentage(r) {
-    return  Math.round(r * 100);
-};
-
+// only whole numbers in the UI
 var updatePercentage = function(){
-    circle.setText( numToPercentage( circle.value() ) );
+    circle.setText( Math.round( circle.value() * 100) );
 }
 
-
+// First part of the animation
 function to90() {
 
-circle.animate(
-    0.9, {
-        duration: 7000,
-        step: updatePercentage
-    }, function() {
-        to99slow();
+    circle.animate(
+        0.9, {
+            duration: 7000,
+            step: updatePercentage
+        }, function() {
+            to99slow();
     });
 
 };
 
+// Second part of the animation has a slower speed
 function to99slow() {
 
     circle.animate(0.99, {
@@ -208,7 +193,8 @@ function to99slow() {
 };
 
 
-
+// Advances the animation to the end.
+// This should be done AFTER the UI for the next screen is ready
 function to100fast() {
 
     circle.animate(1.0, {
@@ -224,26 +210,16 @@ function to100fast() {
 };
 
 
-function to97full() {
 
-    circle.animate(0.97, {
-        duration: 10000,
-        step: updatePercentage
-    });
-
-};
-
-
-
-function bgAfter() {
-    $('.wrap').addClass('bg-after-img');
-    $('.wrap').removeClass('bg-before-img');
-};
-
-function bgBefore() {
-    $('.wrap').addClass('bg-before-img');
-    $('.wrap').removeClass('bg-after-img');
-};
+// function bgAfter() {
+//     $('.wrap').addClass('bg-after-img');
+//     $('.wrap').removeClass('bg-before-img');
+// };
+//
+// function bgBefore() {
+//     $('.wrap').addClass('bg-before-img');
+//     $('.wrap').removeClass('bg-after-img');
+// };
 
 $( document ).on( 'click', '.js-animate-bar-width', function( e ) {
     // simpleBarTo99()
