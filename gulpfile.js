@@ -29,7 +29,7 @@ gulp.task('serve', function() {
 gulp.task('vendor-js', function(){
   return gulp.src([
     'bower_components/jquery/dist/jquery.min.js',
-    'bower_components/progressbar.js/dist/progressbar.min.js'
+    'bower_components/progressbar.js/dist/progressbar.js'
   ])
   .pipe( concat( 'vendor.js' ) )
   .pipe( gulp.dest( 'app/js' ) );

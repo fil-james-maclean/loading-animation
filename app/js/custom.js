@@ -1,11 +1,11 @@
 // Show the overlay then start the progress animation
-function startLoadingModal() {
+function startprogressLoader() {
 
     setTimeout( function() {
 
         $( '.js-overlay' ).fadeIn( 250, function() {
 
-            $( '.loadingModal').removeClass( 'is-right' );
+            $( '.progressLoader').removeClass( 'is-right' );
             setTimeout(  function() {
                 to90();
                 animateDots();
@@ -116,8 +116,8 @@ function jswidth(animationLength) {
 };
 
 
-// Tweenable.setBezierFunction ( easeEnd, 0.770, 0.900, 0.815, 0.995) ;
-var circle = new ProgressBar.Circle('.js-loadingModal--circle', {
+ Tweenable.setBezierFunction ( easeEnd, 0.770, 0.900, 0.815, 0.995) ;
+var circle = new ProgressBar.Circle('.js-progressLoader--circle', {
     // filled color is blue1
     color: '#006193',
     // unfilled/background color is grey15
@@ -133,7 +133,7 @@ var circle = new ProgressBar.Circle('.js-loadingModal--circle', {
 
         // Class name for text element.
         // Default: 'progressbar-text'
-        className: 'loadingModal--percentage',
+        className: 'progressLoader--percentage',
 
         // Inline CSS styles for the text element.
         // If you want to modify all CSS your self, set null to disable
@@ -192,7 +192,7 @@ function to99slow() {
 
 // Advances the animation to the end.
 // This should be done AFTER the UI for the next screen is ready
-function endLoadingModal() {
+function endprogressLoader() {
 
     circle.animate(1.0, {
         duration: 800,
@@ -219,12 +219,12 @@ $( document ).on( 'click', '.js-animate-bar-width', function( e ) {
 
 // simulates a sucsessful submission of the login form
 $( document ).on( 'click', '.js-animate-start', function( e ) {
-    startLoadingModal();
+    startprogressLoader();
     e.preventDefault();
 });
 
 // simulates the account summary area ready
 $( document ).on( 'click', '.js-animate-end', function( e ) {
-    endLoadingModal();
+    endprogressLoader();
     e.preventDefault();
 });
