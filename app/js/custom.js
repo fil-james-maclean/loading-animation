@@ -1,9 +1,9 @@
-// With the element initially hidden, we can show it slowly:
-function overlayFadeIn() {
+// Show the overlay then start the progress animation
+function startLoadingModal() {
 
     setTimeout( function() {
 
-        $( '.js-overlay' ).fadeIn( "slow", function() {
+        $( '.js-overlay' ).fadeIn( 250, function() {
 
             $( '.loadingModal').removeClass( 'is-right' );
             setTimeout(  function() {
@@ -13,22 +13,23 @@ function overlayFadeIn() {
             }, 300 );
 
         } );
+        // Class might not be needed
         $( 'html' ).addClass( 'no-scroll' );
 
-    }, 450 );
+    }, 150 );
 };
 
 
 function overlayFadeOut() {
     // Hides the overlay
-    $( '.js-overlay' ).fadeOut( "slow" );
+    $( '.js-overlay' ).fadeOut( 250 );
 
     // A simulation of the photograph trasnitioning into the darker version
-    $( '.bg-after-img' ).fadeIn( "slow" );
+    $( '.bg-after-img' ).fadeIn( 250 );
 
     // A simulation of existing functionality with a more refined animation.
-    $( '.bg-loginform-img' ).addClass( 'bg-is-left' );
-    $( '.bg-summary-img' ).removeClass( 'bg-is-right' );
+    $( '.bg-loginform-img' ).addClass( 'is-left' );
+    $( '.bg-summary-img' ).removeClass( 'is-right' );
 
     // Class might not be needed
     $( 'html' ).removeClass( 'no-scroll' );
@@ -50,7 +51,7 @@ function animateDots() {
     function addDots(){
         if (dotsIsAnimating==true) {
             dotCount++;
-            $('.progresstext--dots').text( new Array(dotCount % 5).join('.') );
+            $('.js-progresstext--dots').text( new Array(dotCount % 5).join('.') );
 
             // importaint to know if this is still going
             // console.log("dot+");
@@ -77,7 +78,7 @@ function changeText(l) {
         "Fetching investment valuations"
     ];
     var progressUpdatesLen = progressUpdates.length;
-    var findProgressTxt = $(".progresstext--string");
+    var findProgressTxt = $(".js-progresstext--string");
 
     function frame() {
         animateTxt++
@@ -97,8 +98,6 @@ function giveProgressUpdate(message) {
 };
 
 
-
-
 // a Simple bar width animation with no Jquery
 function jswidth(animationLength) {
     var animateWidth = 0;
@@ -115,8 +114,6 @@ function jswidth(animationLength) {
     };
     var id = setInterval(frame, (animationLength/99) );
 };
-
-
 
 
 // Tweenable.setBezierFunction ( easeEnd, 0.770, 0.900, 0.815, 0.995) ;
@@ -195,7 +192,7 @@ function to99slow() {
 
 // Advances the animation to the end.
 // This should be done AFTER the UI for the next screen is ready
-function to100fast() {
+function endLoadingModal() {
 
     circle.animate(1.0, {
         duration: 800,
@@ -209,18 +206,9 @@ function to100fast() {
 
 };
 
+// DEMO buttons simulation buttons other events
 
-
-// function bgAfter() {
-//     $('.wrap').addClass('bg-after-img');
-//     $('.wrap').removeClass('bg-before-img');
-// };
-//
-// function bgBefore() {
-//     $('.wrap').addClass('bg-before-img');
-//     $('.wrap').removeClass('bg-after-img');
-// };
-
+// Simple progress bar start
 $( document ).on( 'click', '.js-animate-bar-width', function( e ) {
     // simpleBarTo99()
     jswidth(8000);
@@ -228,44 +216,15 @@ $( document ).on( 'click', '.js-animate-bar-width', function( e ) {
     changeText(6000);
     e.preventDefault();
 });
-$( document ).on( 'click', '.js-animate-overlay-in', function( e ) {
-    overlayFadeIn();
-    e.preventDefault();
-});
 
-$( document ).on( 'click', '.js-animate-overlay-out', function( e ) {
-    overlayFadeOut();
-    e.preventDefault();
-});
-
+// simulates a sucsessful submission of the login form
 $( document ).on( 'click', '.js-animate-start', function( e ) {
-    to90();
-    changeText(6000)
+    startLoadingModal();
     e.preventDefault();
 });
 
+// simulates the account summary area ready
 $( document ).on( 'click', '.js-animate-end', function( e ) {
-    to100fast();
-    e.preventDefault();
-});
-
-$( document ).on( 'click', '.js-animate-start-full', function( e ) {
-    to97full();
-    e.preventDefault();
-});
-
-$( document ).on( 'click', '.js-reset', function( e ) {
-    circle.set(0.0);
-    circle.setText('0');
-    bgBefore();
-    $( '.js-widthBar' ).width("0%");
-    dotsIsAnimating = false;
-    $(".progresstext--string").text("loading");
-    e.preventDefault();
-});
-
-$( document ).on( 'click', '.js-animate-left-right', function( e ) {
-    $( '.bg-loginform-img' ).toggleClass( 'bg-is-left' );
-    $( '.bg-summary-img' ).toggleClass( 'bg-is-right' );
+    endLoadingModal();
     e.preventDefault();
 });

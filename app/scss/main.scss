@@ -29,7 +29,7 @@ html, body {
         cursor: pointer;
     }
 }
-.wrap {
+.bg-img-wrap {
     max-width: 1280px;
     height: 1300px;
     margin: 0 auto;
@@ -46,7 +46,15 @@ html, body {
     // transition: transform 1200ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
     // transition: transform 1200ms cubic-bezier(0.14, 0.38, 0.36, 1.41);
     transition: transform 1200ms cubic-bezier(0.33, 0.22, 0.36, 1.21);
+    &.is-left {
+        transform: translateX(-100%);
+    }
+
+    &.is-right {
+        transform: translateX(100%);
+    }
 }
+
 
 .bg-before-img {
     background-image: url('../assets/bg_nomask.png');
@@ -65,13 +73,7 @@ html, body {
     background-image: url('../assets/accountsummary.png');
 }
 
-.bg-is-left {
-    transform: translateX(-100%);
-}
 
-.bg-is-right {
-    transform: translateX(100%);
-}
 
 /*
 *
