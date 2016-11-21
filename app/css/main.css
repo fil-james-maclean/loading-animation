@@ -130,6 +130,7 @@ html, body {
   text-align: center;
   transition: transform 300ms ease-out, opacity 200ms ease-out; }
   .progressLoader.is-right {
+    /* remove to animate in */
     -ms-transform: translate(-30%, -50%);
     transform: translate(-30%, -50%);
     opacity: 0; }

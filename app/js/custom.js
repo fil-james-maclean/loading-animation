@@ -116,7 +116,7 @@ function jswidth(animationLength) {
 };
 
 
- Tweenable.setBezierFunction ( easeEnd, 0.770, 0.900, 0.815, 0.995) ;
+ // Tweenable.setBezierFunction ( easeEnd, 0.770, 0.900, 0.815, 0.995) ;
 var circle = new ProgressBar.Circle('.js-progressLoader--circle', {
     // filled color is blue1
     color: '#006193',
