@@ -22,10 +22,10 @@ function startprogressLoader() {
 
 function overlayFadeOut() {
     // Hides the overlay
-    $( '.js-overlay' ).fadeOut( 250 );
+    $( '.js-overlay' ).fadeOut( 400 );
 
     // A simulation of the photograph trasnitioning into the darker version
-    $( '.bg-after-img' ).fadeIn( 250 );
+    $( '.bg-after-img' ).fadeIn( 400 );
 
     // A simulation of existing functionality with a more refined animation.
     $( '.bg-loginform-img' ).addClass( 'is-left' );

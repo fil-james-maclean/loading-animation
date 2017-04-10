@@ -48,7 +48,7 @@ html, body {
     // transition: transform 1200ms cubic-bezier(0.42, 0.15, 0.52, 0.96);
     // transition: transform 1200ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
     // transition: transform 1200ms cubic-bezier(0.14, 0.38, 0.36, 1.41);
-    transition: transform 1200ms cubic-bezier(0.33, 0.22, 0.36, 1.21);
+    transition: transform 1800ms cubic-bezier(0.33, 0.22, 0.36, 1.21);
     &.is-left {
         transform: translateX(-100%);
     }
